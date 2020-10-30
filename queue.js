@@ -47,11 +47,11 @@ function peek(q) {
 
 function isEmpty(q) {
     if (!q.first) {
-        console.log('Empty!')
+        // console.log('Empty!')
         return true;
     }
     else {
-        console.log('Not empty!')
+        // console.log('Not empty!')
         return false;
     }
 }
@@ -80,6 +80,52 @@ function remove(q, str) {
     return newQ
 }
 
+function squareDance(people){
+    let spares = new Queue;
+
+    people.map(person => {
+        if(person[0] === 'M'){
+            if(isEmpty(spares))
+                spares.enqueue(person)
+            else if(spares.first.value.slice(0, 2) === 'F '){
+                console.log(`${person} + ${spares.dequeue()}`)
+            }
+            else    
+                spares.enqueue(person)
+            
+        }
+        else {
+            if(isEmpty(spares))
+                spares.enqueue(person)
+            else if(spares.first.value.slice(0, 2) === 'M '){
+                console.log(`${person} + ${spares.dequeue()}`)
+            }
+            else    
+                spares.enqueue(person)
+        }
+    })
+
+    console.log('\n')
+    display(spares);
+
+}
+
+function bank(q) {
+    console.log('FIRST', q)
+    while (q.first) {
+        let random = Math.floor(Math.random() * Math.floor(4));
+        if (random === 0) {
+            console.log(`Back of the line ${q.first.value}!`);
+            q.enqueue(q.dequeue());
+        }
+        else {
+            console.log(`Have a nice day! ${q.first.value}`);
+            q.dequeue()
+        }
+    }
+    return;
+}
+
 const starTrekQ = new Queue;
 starTrekQ.enqueue('Kirk')
 starTrekQ.enqueue('Spock')
@@ -91,5 +137,23 @@ const testQ = new Queue
 // display(starTrekQ);
 // isEmpty(starTrekQ)
 // isEmpty(testQ)
-remove(starTrekQ, 'Spock');
-console.log(starTrekQ)
+display(starTrekQ)
+let newQ = remove(starTrekQ, 'Checkov');
+display(starTrekQ)
+// console.log(starTrekQ)
+
+let peopleArray = [
+    'F Jane', 
+    'M Frank', 
+    'M John', 
+    'M Malik', 
+    'F Madonna', 
+    'M David', 
+    'M Christopher', 
+    'F Beyonce'
+]
+
+// squareDance(peopleArray);
+// display(starTrekQ)
+
+bank(newQ);
