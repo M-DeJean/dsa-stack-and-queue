@@ -2,13 +2,14 @@ class _Node {
     constructor(value) {
         this.value = value;
         this.next = null;
+        this.before = null;
     }
 }
 
 class Queue {
     constructor() {
-        this.first = null;
-        this.last = null;
+        this.first = null
+        this.last = null
     }
 
     enqueue(data) {
@@ -20,6 +21,7 @@ class Queue {
 
         if (this.last) {
             this.last.next = node;
+            node.before = this.last;
         }
 
         this.last = node;
@@ -37,12 +39,21 @@ class Queue {
         }
         return node.value;
     }
+    
 }
 
-
-
 function peek(q) {
+    console.log(`First Value is: ${q.first.value}`);
     return q.first.value;
+}
+
+function display(q) {
+    let curr = q.first
+    while (curr) {
+        process.stdout.write(`${curr.value} `)
+        curr = curr.next;
+    }
+    console.log('\n')
 }
 
 function isEmpty(q) {
@@ -54,15 +65,6 @@ function isEmpty(q) {
         console.log('Not empty!')
         return false;
     }
-}
-
-function display(q) {
-    let curr = q.first
-    while (curr) {
-        process.stdout.write(`${curr.value} `)
-        curr = curr.next;
-    }
-    console.log('\n')
 }
 
 function remove(q, str) {
@@ -80,16 +82,15 @@ function remove(q, str) {
     return newQ
 }
 
-const starTrekQ = new Queue;
+let starTrekQ = new Queue();
 starTrekQ.enqueue('Kirk')
 starTrekQ.enqueue('Spock')
 starTrekQ.enqueue('Uhura')
 starTrekQ.enqueue('Sulu')
 starTrekQ.enqueue('Checkov')
-const testQ = new Queue
-
-// display(starTrekQ);
-// isEmpty(starTrekQ)
-// isEmpty(testQ)
-remove(starTrekQ, 'Spock');
-console.log(starTrekQ)
+let testQ = new Queue()
+peek(starTrekQ)
+display(starTrekQ)
+isEmpty(starTrekQ)
+isEmpty(testQ)
+remove(starTrekQ, 'Spock')

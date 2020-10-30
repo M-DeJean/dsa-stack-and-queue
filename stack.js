@@ -42,7 +42,7 @@ function isEmpty(stack) {
 function display(stack) {
     let current = stack.top
     while (current !== null) {
-        console.log(current.data)
+        process.stdout.write(`${current.data} `)
         current = current.next
     }
     return;
@@ -149,6 +149,20 @@ function parenthesisFinder(s) {
 
 }
 
+function stackedQueue(stack) {
+    let stackA = stack;
+    let current = stackA.top;
+    let stackB = new Stack();   
+    display(stackA);
+    while (stackA.top !== null ) {
+        stackB.push(stackA.pop())        
+        current.next;
+    }
+    console.log('\n')
+    display(stackB);
+}
+
+
 let starTrek = new Stack();
 starTrek.push('Kirk')
 starTrek.push('Spock')
@@ -156,15 +170,17 @@ starTrek.push('McCoy')
 starTrek.push('Scotty')
 starTrek.push('Josh')
 
-let testStack = new Stack()
-testStack.push(17)
-testStack.push(22)
-testStack.push(4)
-testStack.push(69)
-testStack.push(32)
-testStack.push(1)
-testStack2 = [2,7,1,8,9]
-console.log(sortStack2(testStack2))
+// let testStack = new Stack()
+// testStack.push(17)
+// testStack.push(22)
+// testStack.push(4)
+// testStack.push(69)
+// testStack.push(32)
+// testStack.push(1)
+// testStack2 = [2,7,1,8,9]
+// console.log(sortStack2(testStack2))
+
+stackedQueue(starTrek);
 
 
 
