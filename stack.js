@@ -50,9 +50,9 @@ function display(stack) {
 
 function sortStack(stack){
     let sorted = new Stack();
-    while(!stack.isEmpty()){
+    while(!isEmpty(stack)){
       let temp = stack.pop();
-      while(temp < sorted.peek()){
+      while(peek(sorted) && temp < peek(sorted)){
         stack.push(sorted.pop())
       }
   
@@ -61,6 +61,23 @@ function sortStack(stack){
   
     console.log(sorted)
   }
+
+function sortStack2(stack) {
+    let stackA = stack;
+    let stackB = [];
+    while(stackA.length) {
+        let temp = (stackA.pop());
+        while (true) {
+            if (!stackB.length || temp >= stackB[stackB.length - 1]) {
+                stackB.push(temp);
+                break;
+            } else {
+                stackA.push(stackB.pop());
+            }
+        }
+    }
+    return stackB;
+}
 
 function is_palindrome(s) {
     s = s.toLowerCase().replace(/[^a-zA-Z0-9]/g, "");
@@ -139,6 +156,16 @@ starTrek.push('McCoy')
 starTrek.push('Scotty')
 starTrek.push('Josh')
 
+let testStack = new Stack()
+testStack.push(17)
+testStack.push(22)
+testStack.push(4)
+testStack.push(69)
+testStack.push(32)
+testStack.push(1)
+testStack2 = [2,7,1,8,9]
+console.log(sortStack2(testStack2))
+
 
 
 
@@ -152,4 +179,4 @@ starTrek.push('Josh')
 // console.log(is_palindrome("A man, a plan, a canal: Panama")); //true
 // console.log(is_palindrome("1001"));  //true
 // console.log(is_palindrome("Tauhida"));  //false
-parenthesisFinder('2 + 3( 5 + 4 + 4 4')
+// parenthesisFinder('2 + 3( 5 + 4 + 4 4')
